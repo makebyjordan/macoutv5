@@ -15,6 +15,7 @@ import type { Product } from "@/types";
 import { Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { formatCurrency } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 const productSchema = z.object({
   name: z.string().min(3, "El título debe tener al menos 3 caracteres."),
@@ -25,28 +26,35 @@ const productSchema = z.object({
 });
 
 export default function EquiposPage() {
-  const { products, addProduct, updateProduct, deleteProduct } = useDashboard();
+  const { products, addProduct, updateProduct, deleteProduct, loading } = useDashboard();
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof productSchema>>({
     resolver: zodResolver(productSchema),
     defaultValues: {
       name: "",
       description: "",
-      image: "",
+      image: "https://picsum.photos/600/400",
       price: 0,
       buyLink: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof productSchema>) => {
-    if (editingProduct) {
-      updateProduct(editingProduct.id, { ...editingProduct, ...values });
+  const onSubmit = async (values: z.infer<typeof productSchema>) => {
+    try {
+      if (editingProduct) {
+        await updateProduct(editingProduct.id, { ...values });
+        toast({ title: "Equipo actualizado", description: "El equipo se ha guardado correctamente." });
+      } else {
+        await addProduct(values);
+        toast({ title: "Equipo añadido", description: "El nuevo equipo se ha guardado correctamente." });
+      }
       setEditingProduct(null);
-    } else {
-      addProduct(values);
+      form.reset({ name: "", description: "", image: "https://picsum.photos/600/400", price: 0, buyLink: "" });
+    } catch (error) {
+      toast({ variant: "destructive", title: "Error", description: "No se pudieron guardar los cambios." });
     }
-    form.reset({ name: "", description: "", image: "", price: 0, buyLink: "" });
   };
 
   const handleEdit = (product: Product) => {
@@ -57,7 +65,7 @@ export default function EquiposPage() {
 
   const handleCancelEdit = () => {
     setEditingProduct(null);
-    form.reset({ name: "", description: "", image: "", price: 0, buyLink: "" });
+    form.reset({ name: "", description: "", image: "https://picsum.photos/600/400", price: 0, buyLink: "" });
   };
 
   return (
@@ -140,8 +148,8 @@ export default function EquiposPage() {
                 )}
               />
               <div className="flex gap-2">
-                <Button type="submit" className="bg-gradient-to-r from-accent to-[hsl(var(--custom-yellow))] text-white">
-                  {editingProduct ? "Actualizar Equipo" : "Añadir Equipo"}
+                <Button type="submit" disabled={form.formState.isSubmitting} className="bg-gradient-to-r from-accent to-[hsl(var(--custom-yellow))] text-white">
+                  {form.formState.isSubmitting ? "Guardando..." : (editingProduct ? "Actualizar Equipo" : "Añadir Equipo")}
                 </Button>
                 {editingProduct && (
                   <Button type="button" variant="ghost" onClick={handleCancelEdit}>
@@ -159,43 +167,45 @@ export default function EquiposPage() {
           <CardTitle>Listado de Equipos</CardTitle>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Imagen</TableHead>
-                <TableHead>Título</TableHead>
-                <TableHead>Precio</TableHead>
-                <TableHead>Acciones</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {[...products].reverse().map((product) => (
-                <TableRow key={product.id}>
-                  <TableCell>
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={60}
-                      height={40}
-                      className="rounded-md object-cover"
-                    />
-                  </TableCell>
-                  <TableCell className="font-medium">{product.name}</TableCell>
-                   <TableCell className="font-medium">{formatCurrency(product.price)}</TableCell>
-                  <TableCell>
-                    <div className="flex gap-2">
-                      <Button variant="ghost" size="icon" onClick={() => handleEdit(product)}>
-                        <Pencil className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="icon" onClick={() => deleteProduct(product.id)}>
-                        <Trash2 className="h-4 w-4 text-destructive" />
-                      </Button>
-                    </div>
-                  </TableCell>
+           {loading ? <p>Cargando equipos...</p> : (
+            <Table>
+                <TableHeader>
+                <TableRow>
+                    <TableHead>Imagen</TableHead>
+                    <TableHead>Título</TableHead>
+                    <TableHead>Precio</TableHead>
+                    <TableHead>Acciones</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                </TableHeader>
+                <TableBody>
+                {[...products].reverse().map((product) => (
+                    <TableRow key={product.id}>
+                    <TableCell>
+                        <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={60}
+                        height={40}
+                        className="rounded-md object-cover"
+                        />
+                    </TableCell>
+                    <TableCell className="font-medium">{product.name}</TableCell>
+                    <TableCell className="font-medium">{formatCurrency(product.price)}</TableCell>
+                    <TableCell>
+                        <div className="flex gap-2">
+                        <Button variant="ghost" size="icon" onClick={() => handleEdit(product)}>
+                            <Pencil className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="icon" onClick={() => deleteProduct(product.id)}>
+                            <Trash2 className="h-4 w-4 text-destructive" />
+                        </Button>
+                        </div>
+                    </TableCell>
+                    </TableRow>
+                ))}
+                </TableBody>
+            </Table>
+           )}
         </CardContent>
       </Card>
     </div>

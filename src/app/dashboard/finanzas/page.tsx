@@ -12,9 +12,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import type { Transaction } from "@/types";
+import type { Transaction, TransactionData } from "@/types";
 import { Pencil, Trash2 } from "lucide-react";
 import { formatCurrency, formatDate } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 const transactionSchema = z.object({
   title: z.string().min(3, "El título debe tener al menos 3 caracteres."),
@@ -86,8 +87,8 @@ const TransactionForm = ({ type, onSave, editingTransaction, cancelEdit }: { typ
           )}
         />
         <div className="flex gap-2">
-            <Button type="submit" className="bg-gradient-to-r from-accent to-[hsl(var(--custom-yellow))] text-white">
-                {editingTransaction ? `Actualizar ${type === 'income' ? 'Ingreso' : 'Gasto'}` : `Guardar ${type === 'income' ? 'Ingreso' : 'Gasto'}`}
+            <Button type="submit" disabled={form.formState.isSubmitting} className="bg-gradient-to-r from-accent to-[hsl(var(--custom-yellow))] text-white">
+                {form.formState.isSubmitting ? "Guardando..." : (editingTransaction ? `Actualizar ${type === 'income' ? 'Ingreso' : 'Gasto'}` : `Guardar ${type === 'income' ? 'Ingreso' : 'Gasto'}`)}
             </Button>
             {editingTransaction && (
                 <Button type="button" variant="ghost" onClick={cancelEdit}>
@@ -101,11 +102,13 @@ const TransactionForm = ({ type, onSave, editingTransaction, cancelEdit }: { typ
 }
 
 const TransactionsTable = ({ type, onEdit, onDelete }: { type: 'income' | 'expense', onEdit: (tx: Transaction) => void, onDelete: (id: string) => void }) => {
-  const { transactions } = useDashboard();
+  const { transactions, loading } = useDashboard();
   const filteredTxs = useMemo(() => 
-    [...transactions].filter(tx => tx.type === type).reverse(), 
+    [...transactions].filter(tx => tx.type === type).sort((a, b) => b.date.getTime() - a.date.getTime()), 
     [transactions, type]
   );
+  
+  if (loading) return <p>Cargando transacciones...</p>;
 
   return (
     <Table>
@@ -144,14 +147,21 @@ export default function FinanzasPage() {
   const { addTransaction, updateTransaction, deleteTransaction } = useDashboard();
   const [editingIncome, setEditingIncome] = useState<Transaction | null>(null);
   const [editingExpense, setEditingExpense] = useState<Transaction | null>(null);
+  const { toast } = useToast();
 
-  const handleSave = (type: 'income' | 'expense') => (data: TransactionFormValues) => {
+  const handleSave = (type: 'income' | 'expense') => async (data: TransactionFormValues) => {
     const editingTx = type === 'income' ? editingIncome : editingExpense;
-    if(editingTx) {
-      updateTransaction(editingTx.id, {...editingTx, ...data});
+    try {
+      if(editingTx) {
+        await updateTransaction(editingTx.id, {...data, type});
+        toast({ title: "Transacción actualizada", description: "La transacción se ha guardado correctamente." });
+      } else {
+        await addTransaction({ ...data, type });
+        toast({ title: "Transacción añadida", description: "La nueva transacción se ha guardado correctamente." });
+      }
       type === 'income' ? setEditingIncome(null) : setEditingExpense(null);
-    } else {
-      addTransaction({ ...data, type });
+    } catch (error) {
+       toast({ variant: "destructive", title: "Error", description: "No se pudieron guardar los cambios." });
     }
   };
 

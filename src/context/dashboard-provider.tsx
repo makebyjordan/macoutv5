@@ -1,17 +1,29 @@
 "use client";
 
-import { createContext, useState, useMemo, useCallback } from "react";
-import type { Product, Transaction, TransactionType } from "@/types";
+import { createContext, useState, useMemo, useCallback, useEffect } from "react";
+import { 
+  collection, 
+  getDocs, 
+  addDoc, 
+  updateDoc, 
+  deleteDoc, 
+  doc,
+  Timestamp
+} from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import type { Product, ProductData, Transaction, TransactionData } from "@/types";
+import { useToast } from "@/hooks/use-toast";
 
 interface DashboardContextType {
+  loading: boolean;
   products: Product[];
-  addProduct: (product: Omit<Product, "id">) => void;
-  updateProduct: (id: string, updatedProduct: Product) => void;
-  deleteProduct: (id: string) => void;
+  addProduct: (product: ProductData) => Promise<void>;
+  updateProduct: (id: string, updatedProduct: ProductData) => Promise<void>;
+  deleteProduct: (id: string) => Promise<void>;
   transactions: Transaction[];
-  addTransaction: (transaction: Omit<Transaction, "id" | "date">) => void;
-  updateTransaction: (id: string, updatedTransaction: Transaction) => void;
-  deleteTransaction: (id: string) => void;
+  addTransaction: (transaction: TransactionData) => Promise<void>;
+  updateTransaction: (id: string, updatedTransaction: TransactionData) => Promise<void>;
+  deleteTransaction: (id: string) => Promise<void>;
   totalIncome: number;
   totalExpenses: number;
   netBalance: number;
@@ -19,52 +31,96 @@ interface DashboardContextType {
 
 export const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
 
-const initialProducts: Product[] = Array.from({ length: 50 }, (_, i) => ({
-    id: `prod_${i + 1}`,
-    name: `MacBook Pro 14" M3 (${i % 5 + 1})`,
-    description: 'Chip M3 de Apple con CPU de 8 núcleos, GPU de 10 núcleos, memoria unificada de 16 GB, almacenamiento SSD de 512 GB. Pantalla Liquid Retina XDR de 14.2 pulgadas.',
-    image: `https://picsum.photos/seed/${i+1}/600/400`,
-    price: 1599 + i * 10,
-    buyLink: 'https://wallapop.com',
-}));
-
-const initialTransactions: Transaction[] = [
-    { id: 'inc_1', type: 'income', title: 'Venta Lote MacBook Air', description: '', amount: 25000, date: new Date() },
-    { id: 'inc_2', type: 'income', title: 'Venta iMac 27"', description: '', amount: 15000, date: new Date() },
-    { id: 'inc_3', type: 'income', title: 'Servicios de reparación', description: '', amount: 10000, date: new Date() },
-    { id: 'exp_1', type: 'expense', title: 'Compra lote iPhones', description: '', amount: 12000, date: new Date() },
-    { id: 'exp_2', type: 'expense', title: 'Alquiler local', description: '', amount: 5000, date: new Date() },
-    { id: 'exp_3', type: 'expense', title: 'Nóminas', description: '', amount: 3000, date: new Date() },
-];
-
-
 export function DashboardProvider({ children }: { children: React.ReactNode }) {
-  const [products, setProducts] = useState<Product[]>(initialProducts);
-  const [transactions, setTransactions] = useState<Transaction[]>(initialTransactions);
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const { toast } = useToast();
 
-  const addProduct = useCallback((product: Omit<Product, "id">) => {
-    setProducts(prev => [...prev, { ...product, id: `prod_${Date.now()}` }]);
-  }, []);
+  const productsCollection = collection(db, "products");
+  const transactionsCollection = collection(db, "transactions");
 
-  const updateProduct = useCallback((id: string, updatedProduct: Product) => {
-    setProducts(prev => prev.map(p => p.id === id ? updatedProduct : p));
-  }, []);
+  const fetchAllData = useCallback(async () => {
+    setLoading(true);
+    try {
+      // Fetch products
+      const productsSnapshot = await getDocs(productsCollection);
+      const productsList = productsSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as Product[];
+      setProducts(productsList);
+
+      // Fetch transactions
+      const transactionsSnapshot = await getDocs(transactionsCollection);
+      const transactionsList = transactionsSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          ...data,
+          date: (data.date as Timestamp).toDate(),
+        }
+      }) as Transaction[];
+      setTransactions(transactionsList);
+
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      toast({
+        variant: "destructive",
+        title: "Error de Carga",
+        description: "No se pudieron cargar los datos desde el backend.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    fetchAllData();
+  }, [fetchAllData]);
   
-  const deleteProduct = useCallback((id: string) => {
+  const addProduct = async (productData: ProductData) => {
+    const docRef = await addDoc(productsCollection, productData);
+    setProducts(prev => [...prev, { id: docRef.id, ...productData }]);
+  };
+
+  const updateProduct = async (id: string, updatedProductData: ProductData) => {
+    const productDoc = doc(db, "products", id);
+    await updateDoc(productDoc, updatedProductData);
+    setProducts(prev => prev.map(p => p.id === id ? { id, ...updatedProductData } : p));
+  };
+  
+  const deleteProduct = async (id: string) => {
+    const productDoc = doc(db, "products", id);
+    await deleteDoc(productDoc);
     setProducts(prev => prev.filter(p => p.id !== id));
-  }, []);
+  };
   
-  const addTransaction = useCallback((transaction: Omit<Transaction, "id" | "date">) => {
-    setTransactions(prev => [...prev, { ...transaction, id: `${transaction.type}_${Date.now()}`, date: new Date() }]);
-  }, []);
+  const addTransaction = async (transactionData: TransactionData) => {
+    const dataWithDate = {
+      ...transactionData,
+      date: new Date()
+    };
+    const docRef = await addDoc(transactionsCollection, dataWithDate);
+    setTransactions(prev => [...prev, { ...dataWithDate, id: docRef.id }]);
+  };
   
-  const updateTransaction = useCallback((id: string, updatedTransaction: Transaction) => {
-    setTransactions(prev => prev.map(t => t.id === id ? updatedTransaction : t));
-  }, []);
+  const updateTransaction = async (id: string, updatedTransactionData: TransactionData) => {
+    const transactionDoc = doc(db, "transactions", id);
+    // Keep original date on update
+    const originalTx = transactions.find(t => t.id === id);
+    if (!originalTx) return;
 
-  const deleteTransaction = useCallback((id: string) => {
+    const dataToUpdate = { ...updatedTransactionData, date: originalTx.date };
+    await updateDoc(transactionDoc, dataToUpdate);
+    setTransactions(prev => prev.map(t => t.id === id ? { ...originalTx, ...updatedTransactionData, id } : t));
+  };
+
+  const deleteTransaction = async (id: string) => {
+    const transactionDoc = doc(db, "transactions", id);
+    await deleteDoc(transactionDoc);
     setTransactions(prev => prev.filter(t => t.id !== id));
-  }, []);
+  };
 
   const { totalIncome, totalExpenses, netBalance } = useMemo(() => {
     const totalIncome = transactions
@@ -80,6 +136,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
 
 
   const value = useMemo(() => ({
+    loading,
     products,
     addProduct,
     updateProduct,
@@ -91,7 +148,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
     totalIncome,
     totalExpenses,
     netBalance
-  }), [products, addProduct, updateProduct, deleteProduct, transactions, addTransaction, updateTransaction, deleteTransaction, totalIncome, totalExpenses, netBalance]);
+  }), [loading, products, transactions, totalIncome, totalExpenses, netBalance]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <DashboardContext.Provider value={value}>
