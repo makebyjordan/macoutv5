@@ -42,15 +42,16 @@ export function DashboardSidebar() {
         <SidebarMenu>
           {navItems.map((item) => (
             <SidebarMenuItem key={item.href}>
-              <Link href={item.href} legacyBehavior passHref>
-                <SidebarMenuButton
-                  isActive={pathname === item.href}
-                  className="font-headline"
-                >
+              <SidebarMenuButton
+                asChild
+                isActive={pathname === item.href}
+                className="font-headline"
+              >
+                <Link href={item.href}>
                   <item.icon className="h-5 w-5" />
                   {item.label}
-                </SidebarMenuButton>
-              </Link>
+                </Link>
+              </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
