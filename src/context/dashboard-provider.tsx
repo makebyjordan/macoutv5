@@ -24,6 +24,8 @@ const initialProducts: Product[] = Array.from({ length: 50 }, (_, i) => ({
     name: `MacBook Pro 14" M3 (${i % 5 + 1})`,
     description: 'Chip M3 de Apple con CPU de 8 núcleos, GPU de 10 núcleos, memoria unificada de 16 GB, almacenamiento SSD de 512 GB. Pantalla Liquid Retina XDR de 14.2 pulgadas.',
     image: `https://picsum.photos/seed/${i+1}/600/400`,
+    price: 1599 + i * 10,
+    buyLink: 'https://wallapop.com',
 }));
 
 const initialTransactions: Transaction[] = [

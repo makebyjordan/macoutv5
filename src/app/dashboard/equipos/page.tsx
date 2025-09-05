@@ -14,11 +14,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import type { Product } from "@/types";
 import { Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
+import { formatCurrency } from "@/lib/utils";
 
 const productSchema = z.object({
   name: z.string().min(3, "El título debe tener al menos 3 caracteres."),
   description: z.string().min(10, "La descripción debe tener al menos 10 caracteres."),
   image: z.string().url("Debe ser una URL de imagen válida."),
+  price: z.coerce.number().positive("El precio debe ser un número positivo."),
+  buyLink: z.string().url("Debe ser una URL válida (ej. Wallapop)."),
 });
 
 export default function EquiposPage() {
@@ -31,6 +34,8 @@ export default function EquiposPage() {
       name: "",
       description: "",
       image: "",
+      price: 0,
+      buyLink: "",
     },
   });
 
@@ -41,7 +46,7 @@ export default function EquiposPage() {
     } else {
       addProduct(values);
     }
-    form.reset();
+    form.reset({ name: "", description: "", image: "", price: 0, buyLink: "" });
   };
 
   const handleEdit = (product: Product) => {
@@ -52,7 +57,7 @@ export default function EquiposPage() {
 
   const handleCancelEdit = () => {
     setEditingProduct(null);
-    form.reset({ name: "", description: "", image: "" });
+    form.reset({ name: "", description: "", image: "", price: 0, buyLink: "" });
   };
 
   return (
@@ -93,6 +98,34 @@ export default function EquiposPage() {
                   </FormItem>
                 )}
               />
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FormField
+                  control={form.control}
+                  name="price"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Precio (€)</FormLabel>
+                      <FormControl>
+                        <Input type="number" step="0.01" placeholder="1250" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="buyLink"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Enlace de Compra</FormLabel>
+                      <FormControl>
+                        <Input placeholder="https://wallapop.com/item/..." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
               <FormField
                 control={form.control}
                 name="image"
@@ -131,6 +164,7 @@ export default function EquiposPage() {
               <TableRow>
                 <TableHead>Imagen</TableHead>
                 <TableHead>Título</TableHead>
+                <TableHead>Precio</TableHead>
                 <TableHead>Acciones</TableHead>
               </TableRow>
             </TableHeader>
@@ -147,6 +181,7 @@ export default function EquiposPage() {
                     />
                   </TableCell>
                   <TableCell className="font-medium">{product.name}</TableCell>
+                   <TableCell className="font-medium">{formatCurrency(product.price)}</TableCell>
                   <TableCell>
                     <div className="flex gap-2">
                       <Button variant="ghost" size="icon" onClick={() => handleEdit(product)}>
