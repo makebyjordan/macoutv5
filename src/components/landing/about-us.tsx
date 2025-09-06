@@ -18,8 +18,7 @@ export function AboutUs() {
   return (
     <AnimatedSection id="quienes-somos" className="py-16 sm:py-24 bg-card">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1">
+        <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="text-sm font-semibold bg-secondary py-1 px-3 rounded-full">Quiénes Somos</span>
             <h2 className="font-headline text-3xl sm:text-4xl font-bold my-4">
               Pasión por Apple y por Sevilla
@@ -30,22 +29,19 @@ export function AboutUs() {
             <p className="text-muted-foreground leading-relaxed">
               Seleccionamos, verificamos y ponemos a punto cada dispositivo para que disfrutes de la experiencia Apple como si fuera nuevo. Somos tu tienda de confianza en Sevilla.
             </p>
-          </div>
-          <div className="order-1 md:order-2">
-            <div className="grid grid-cols-3 grid-rows-3 gap-2 h-96">
-                {images.slice(0, 7).map((image, index) => (
-                    <div key={index} className={`relative overflow-hidden rounded-2xl group ${image.className}`}>
-                        <Image
-                            src={image.src}
-                            alt={`Equipo de Mac-Out ${index + 1}`}
-                            fill
-                            className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                    </div>
-                ))}
-            </div>
-          </div>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-4 h-96">
+            {images.slice(0, 8).map((image, index) => (
+                <div key={index} className={`relative overflow-hidden rounded-2xl group ${image.className}`}>
+                    <Image
+                        src={image.src}
+                        alt={`Equipo de Mac-Out ${index + 1}`}
+                        fill
+                        className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                </div>
+            ))}
         </div>
       </div>
     </AnimatedSection>
