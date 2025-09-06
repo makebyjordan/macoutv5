@@ -34,8 +34,8 @@ export function DashboardSidebar() {
     <Sidebar>
       <SidebarHeader>
         <Link href="/dashboard" className="flex items-center gap-2">
-          <MacOutLogo className="h-8 w-8 text-accent" />
-          <span className="font-headline text-xl font-semibold">Mac-Out</span>
+          <MacOutLogo className="h-8 w-8 text-foreground" />
+          <span className="font-headline text-xl font-bold">Mac-Out</span>
         </Link>
       </SidebarHeader>
       <SidebarContent>
@@ -45,7 +45,7 @@ export function DashboardSidebar() {
               <SidebarMenuButton
                 asChild
                 isActive={pathname === item.href}
-                className="font-headline"
+                className="font-headline font-semibold"
               >
                 <Link href={item.href}>
                   <item.icon className="h-5 w-5" />
@@ -59,7 +59,7 @@ export function DashboardSidebar() {
       <SidebarFooter>
         <SidebarMenu>
            <SidebarMenuItem>
-                <SidebarMenuButton onClick={handleLogout}>
+                <SidebarMenuButton onClick={handleLogout} className="font-semibold">
                     <LogOut className="h-5 w-5" />
                     Cerrar Sesión
                 </SidebarMenuButton>

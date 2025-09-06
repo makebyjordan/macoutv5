@@ -9,19 +9,20 @@ export function Hero() {
         <div className="container mx-auto px-4 py-24 sm:py-32 lg:py-40">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div className="text-center lg:text-left">
+                    <p className="text-sm text-muted-foreground mb-2">Dale una segunda vida a la tecnología</p>
                     <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-                        Dale una segunda vida a la tecnología.
-                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-accent to-[hsl(var(--custom-yellow))] mt-2">
-                            Descubre tu Apple reacondicionado.
+                        Tu Apple reacondicionado.
+                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-primary to-lime-400 mt-2">
+                           Calidad y ahorro.
                         </span>
                     </h1>
                     <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0">
                         Equipos 100% verificados, con garantía y al mejor precio. Directamente desde el corazón de Sevilla.
                     </p>
                     <div className="mt-10">
-                        <Button asChild size="lg" className="bg-gradient-to-r from-accent to-[hsl(var(--custom-yellow))] text-white shadow-lg transition-transform hover:scale-105">
+                        <Button asChild size="lg" className="bg-primary text-primary-foreground rounded-full shadow-lg transition-transform hover:scale-105 hover:bg-primary/90">
                             <Link href="#productos">
-                                Ver Productos Disponibles
+                                Ver Productos &#8594;
                             </Link>
                         </Button>
                     </div>
@@ -34,7 +35,7 @@ export function Hero() {
                       height={600}
                       data-ai-hint="apple products"
                       priority
-                      className="rounded-lg shadow-2xl object-cover aspect-[4/3]"
+                      className="rounded-2xl shadow-2xl object-cover aspect-[4/3]"
                     />
                 </div>
             </div>

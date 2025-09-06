@@ -13,7 +13,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+    <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 rounded-2xl border-2 border-transparent hover:border-primary hover:-translate-y-1 hover:shadow-xl">
       <CardHeader className="p-0">
         <div className="relative aspect-[4/3] w-full">
           <Image
@@ -21,19 +21,17 @@ export function ProductCard({ product }: ProductCardProps) {
             alt={product.name}
             fill
             data-ai-hint="apple product"
-            className="object-cover"
+            className="object-cover rounded-t-2xl"
           />
-           <Badge className="absolute top-2 right-2 bg-gradient-to-r from-accent to-[hsl(var(--custom-yellow))] text-white border-none">
-            {formatCurrency(product.price)}
-          </Badge>
         </div>
       </CardHeader>
       <CardContent className="p-4 flex-grow flex flex-col">
-        <CardTitle className="font-headline text-lg mb-2 flex-grow">{product.name}</CardTitle>
-        <CardDescription className="text-sm line-clamp-3">{product.description}</CardDescription>
+        <CardTitle className="font-headline text-lg mb-1 flex-grow font-bold">{product.name}</CardTitle>
+        <Badge className="bg-secondary text-secondary-foreground w-fit mb-2">{formatCurrency(product.price)}</Badge>
+        <CardDescription className="text-sm line-clamp-3 text-muted-foreground">{product.description}</CardDescription>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-         <Button asChild className="w-full bg-gradient-to-r from-accent to-[hsl(var(--custom-yellow))] text-white">
+         <Button asChild className="w-full bg-primary text-primary-foreground rounded-full hover:bg-primary/90">
             <Link href={product.buyLink} target="_blank" rel="noopener noreferrer">
                 <ShoppingCart className="mr-2 h-4 w-4"/>
                 Comprar

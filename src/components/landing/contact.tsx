@@ -38,19 +38,19 @@ export function Contact() {
           <div className="space-y-6">
             {contactInfo.map((item, index) => (
               <div key={index} className="flex items-start gap-4">
-                <div className="flex-shrink-0">
-                  <item.icon className="h-6 w-6 text-accent" />
+                <div className="flex-shrink-0 bg-primary p-3 rounded-full">
+                  <item.icon className="h-6 w-6 text-primary-foreground" />
                 </div>
-                <p className="text-lg">{item.text}</p>
+                <p className="text-lg pt-2">{item.text}</p>
               </div>
             ))}
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <Input type="text" placeholder="Nombre" required />
-            <Input type="email" placeholder="Email" required />
-            <Textarea placeholder="Mensaje" rows={5} required />
-            <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-accent to-[hsl(var(--custom-yellow))] text-white transition-transform hover:scale-105">
-              Enviar
+            <Input type="text" placeholder="Nombre" required className="bg-card rounded-full px-4" />
+            <Input type="email" placeholder="Email" required className="bg-card rounded-full px-4" />
+            <Textarea placeholder="Mensaje" rows={5} required className="bg-card rounded-2xl px-4"/>
+            <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground rounded-full transition-transform hover:scale-105 hover:bg-primary/90">
+              Enviar Mensaje &#8594;
             </Button>
           </form>
         </div>
