@@ -1,6 +1,15 @@
 import Image from "next/image";
 import { AnimatedSection } from "../animated-section";
 
+const images = [
+    { src: "https://freeimage.host/i/KnvmVYG", className: "col-span-2 row-span-2" },
+    { src: "https://freeimage.host/i/KnvmjTl", className: "" },
+    { src: "https://freeimage.host/i/KnvmWvf", className: "" },
+    { src: "https://freeimage.host/i/KnvmM2s", className: "" },
+    { src: "https://freeimage.host/i/KnvmNQS", className: "" },
+    { src: "https://freeimage.host/i/Knvmgvj", className: "col-span-2" },
+];
+
 export function AboutUs() {
   return (
     <AnimatedSection id="quienes-somos" className="py-16 sm:py-24 bg-card">
@@ -19,14 +28,19 @@ export function AboutUs() {
             </p>
           </div>
           <div className="order-1 md:order-2">
-            <Image
-              src="https://picsum.photos/600/500"
-              alt="Equipo de Mac-Out"
-              width={600}
-              height={500}
-              data-ai-hint="team smiling"
-              className="rounded-2xl shadow-lg aspect-video object-cover"
-            />
+            <div className="grid grid-cols-3 grid-rows-3 gap-2 h-96">
+                {images.map((image, index) => (
+                    <div key={index} className={`relative overflow-hidden rounded-2xl group ${image.className}`}>
+                        <Image
+                            src={image.src}
+                            alt={`Equipo de Mac-Out ${index + 1}`}
+                            fill
+                            className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                    </div>
+                ))}
+            </div>
           </div>
         </div>
       </div>

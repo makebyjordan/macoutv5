@@ -23,6 +23,13 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
       {
+        protocol: 'https' ,
+        hostname: 'freeimage.host',
+        port: '',
+        pathname: '/**',
+      
+      },
+      {
         protocol: 'https',
         hostname: 'macout.es',
         port: '',
