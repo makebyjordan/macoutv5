@@ -27,7 +27,7 @@ export function DashboardSidebar() {
   const router = useRouter();
 
   const handleLogout = () => {
-    sessionStorage.removeItem("mac-out-auth");
+    sessionStorage.removeItem("macout-auth");
     router.push('/');
   }
 
@@ -36,7 +36,7 @@ export function DashboardSidebar() {
       <SidebarHeader>
         <Link href="/dashboard" className="flex items-center gap-2">
           <MacOutLogo className="h-8 w-8 text-foreground" />
-          <span className="font-headline text-xl font-bold">Mac-Out</span>
+          <span className="font-headline text-xl font-bold">MacOut</span>
         </Link>
       </SidebarHeader>
       <SidebarContent>

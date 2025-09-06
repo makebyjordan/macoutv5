@@ -37,7 +37,7 @@ export function AuthModal({ isOpen, onOpenChange }: AuthModalProps) {
     if (code === ACCESS_CODE) {
       setLoading(true);
       setTimeout(() => {
-        sessionStorage.setItem("mac-out-auth", "true");
+        sessionStorage.setItem("macout-auth", "true");
         router.push("/dashboard");
         onOpenChange(false);
       }, 1500); // Simulate network latency & show loading

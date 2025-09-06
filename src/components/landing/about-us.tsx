@@ -24,7 +24,7 @@ export function AboutUs() {
               Pasión por Apple y por Sevilla
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Nacimos de la pasión por la tecnología de Apple y el compromiso con la sostenibilidad. En Mac-Out, creemos que la calidad no tiene por qué ser cara ni perjudicial para el planeta.
+              Nacimos de la pasión por la tecnología de Apple y el compromiso con la sostenibilidad. En MacOut, creemos que la calidad no tiene por qué ser cara ni perjudicial para el planeta.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Seleccionamos, verificamos y ponemos a punto cada dispositivo para que disfrutes de la experiencia Apple como si fuera nuevo. Somos tu tienda de confianza en Sevilla.
@@ -38,7 +38,7 @@ export function AboutUs() {
                 <div key={index} className={`relative overflow-hidden rounded-2xl group ${image.className}`}>
                     <Image
                         src={image.src}
-                        alt={`Equipo de Mac-Out ${index + 1}`}
+                        alt={`Equipo de MacOut ${index + 1}`}
                         fill
                         className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 50vw"

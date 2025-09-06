@@ -6,8 +6,8 @@ export function MacOutLogo(props: SVGProps<SVGSVGElement> & { className?: string
   return (
     <div className={cn("relative", props.className)}>
         <Image
-            src="https://iili.io/KnvXOSR.png"
-            alt="Mac-Out Logo"
+            src="https://iili.io/KnSIFEX.png"
+            alt="MacOut Logo"
             fill
             className="object-contain"
             sizes="10vw"

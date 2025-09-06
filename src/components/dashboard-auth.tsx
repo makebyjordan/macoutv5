@@ -9,7 +9,7 @@ export function DashboardAuth({ children }: { children: React.ReactNode }) {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    const isAuthenticated = sessionStorage.getItem("mac-out-auth") === "true";
+    const isAuthenticated = sessionStorage.getItem("macout-auth") === "true";
     if (!isAuthenticated) {
       router.replace("/");
     } else {

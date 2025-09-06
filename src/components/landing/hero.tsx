@@ -6,7 +6,7 @@ export function Hero() {
     <AnimatedSection id="inicio" className="relative h-screen min-h-[500px] w-full text-white">
       <Image
         src="https://iili.io/KnvsOUQ.png"
-        alt="Logo de Mac-Out sobre un fondo de cubos azules y negros"
+        alt="Logo de MacOut sobre un fondo de cubos azules y negros"
         fill
         priority
         className="object-cover"

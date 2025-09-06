@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const contactInfo = [
   { icon: MapPin, text: "Dirección: C. Tecnología, 5, 41015 Sevilla" },
-  { icon: Mail, text: "Email: hola@mac-out.es" },
+  { icon: Mail, text: "Email: hola@macout.es" },
   { icon: Phone, text: "Teléfono: +34 954 123 456" },
 ];
 

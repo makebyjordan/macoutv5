@@ -7,8 +7,8 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'Mac-Out Recommerce',
-  description: 'Dale una segunda vida a la tecnología. Descubre tu Apple reacondicionado en Mac-Out.',
+  title: 'MacOut Recommerce',
+  description: 'Dale una segunda vida a la tecnología. Descubre tu Apple reacondicionado en MacOut.',
 };
 
 export default function RootLayout({
