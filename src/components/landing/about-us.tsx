@@ -2,12 +2,9 @@ import Image from "next/image";
 import { AnimatedSection } from "../animated-section";
 
 const images = [
-    { src: "https://freeimage.host/i/KnvmVYG", className: "col-span-2 row-span-2" },
-    { src: "https://freeimage.host/i/KnvmjTl", className: "" },
-    { src: "https://freeimage.host/i/KnvmWvf", className: "" },
-    { src: "https://freeimage.host/i/KnvmM2s", className: "" },
-    { src: "https://freeimage.host/i/KnvmNQS", className: "" },
-    { src: "https://freeimage.host/i/Knvmgvj", className: "col-span-2" },
+    { src: "https://iili.io/KnvmVYG.webp", className: "col-span-2 row-span-2" },
+    { src: "https://iili.io/KnvmjTl.webp", className: "" },
+    { src: "https://iili.io/KnvmWvf.webp", className: "" },
 ];
 
 export function AboutUs() {
@@ -28,7 +25,7 @@ export function AboutUs() {
             </p>
           </div>
           <div className="order-1 md:order-2">
-            <div className="grid grid-cols-3 grid-rows-3 gap-2 h-96">
+            <div className="grid grid-cols-3 grid-rows-2 gap-2 h-96">
                 {images.map((image, index) => (
                     <div key={index} className={`relative overflow-hidden rounded-2xl group ${image.className}`}>
                         <Image
