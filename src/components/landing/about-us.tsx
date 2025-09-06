@@ -5,6 +5,13 @@ const images = [
     { src: "https://iili.io/KnvmVYG.webp", className: "col-span-2 row-span-2" },
     { src: "https://iili.io/KnvmjTl.webp", className: "" },
     { src: "https://iili.io/KnvmWvf.webp", className: "" },
+    { src: "https://iili.io/KnvmZ6F.webp", className: "" },
+    { src: "https://iili.io/KnvmM2s.webp", className: "" },
+    { src: "https://iili.io/KnvmNQS.webp", className: "col-span-2" },
+    { src: "https://iili.io/Knvmgvj.webp", className: "" },
+    { src: "https://iili.io/KnvmiZB.webp", className: "" },
+    { src: "https://iili.io/KnvmPjV.webp", className: "" },
+    { src: "https://iili.io/KnvmLCP.webp", className: "" },
 ];
 
 export function AboutUs() {
@@ -25,8 +32,8 @@ export function AboutUs() {
             </p>
           </div>
           <div className="order-1 md:order-2">
-            <div className="grid grid-cols-3 grid-rows-2 gap-2 h-96">
-                {images.map((image, index) => (
+            <div className="grid grid-cols-3 grid-rows-3 gap-2 h-96">
+                {images.slice(0, 7).map((image, index) => (
                     <div key={index} className={`relative overflow-hidden rounded-2xl group ${image.className}`}>
                         <Image
                             src={image.src}
