@@ -26,13 +26,6 @@ export function Hero() {
           <p className="mt-6 text-lg text-gray-200">
               Equipos 100% verificados, con garantía y al mejor precio. Directamente desde el corazón de Sevilla.
           </p>
-          <div className="mt-10">
-              <Button asChild size="lg" className="bg-primary text-primary-foreground rounded-full shadow-lg transition-transform hover:scale-105 hover:bg-primary/90">
-                  <Link href="#productos">
-                      Ver Productos &#8594;
-                  </Link>
-              </Button>
-          </div>
         </div>
       </div>
     </AnimatedSection>
