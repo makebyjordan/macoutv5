@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <AnimatedSection id="inicio" className="relative h-[80vh] min-h-[500px] w-full text-white">
       <Image
-        src="https://macout.es/wp-content/uploads/2024/07/fondo-mac-out.png"
+        src="https://iili.io/KnvOPyv.png"
         alt="Logo de Mac-Out sobre un fondo de cubos azules y negros"
         fill
         priority
