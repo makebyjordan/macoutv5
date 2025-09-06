@@ -5,9 +5,9 @@ import { AnimatedSection } from "../animated-section";
 
 export function Hero() {
   return (
-    <AnimatedSection id="inicio" className="relative h-[80vh] min-h-[500px] w-full text-white">
+    <AnimatedSection id="inicio" className="relative h-screen min-h-[500px] w-full text-white">
       <Image
-        src="https://iili.io/KnvOPyv.png"
+        src="https://iili.io/KnvsOUQ.png"
         alt="Logo de Mac-Out sobre un fondo de cubos azules y negros"
         fill
         priority
