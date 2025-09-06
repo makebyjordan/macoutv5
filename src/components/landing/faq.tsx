@@ -26,6 +26,22 @@ const faqItems = [
   {
     question: "¿Puedo ver el equipo antes de comprarlo?",
     answer: "¡Claro! Si estás en Sevilla, puedes concertar una cita para ver y probar el equipo sin ningún compromiso. Para envíos, proporcionamos fotos y vídeos detallados para que veas el estado real del producto."
+  },
+  {
+    question: "¿Qué significa que un equipo es reacondicionado?",
+    answer: "Significa que ha tenido un uso previo, pero no te preocupes. En Mac-Out, cada equipo pasa por un exhaustivo proceso de revisión y prueba. Nuestros técnicos expertos se aseguran de que cada componente funcione a la perfección, garantizando que recibas un producto 100% funcional y en excelentes condiciones."
+  },
+  {
+    question: "¿Podéis mejorar el rendimiento de mi equipo Apple?",
+    answer: "¡Por supuesto! Si sientes que tu Mac o MacBook necesita un impulso, ofrecemos servicios de ampliación. Podemos mejorar la memoria RAM, aumentar el almacenamiento con discos SSD más rápidos y optimizar su rendimiento general para que vuelva a volar."
+  },
+  {
+    question: "¿Ofrecéis servicio técnico para reparaciones?",
+    answer: "Sí, contamos con un servicio técnico especializado en la reparación de cualquier dispositivo Apple. Realizamos diagnósticos precisos y te ofrecemos un presupuesto sin ningún tipo de compromiso. Confía en nosotros para solucionar cualquier problema."
+  },
+  {
+    question: "¿Tenéis tienda física en Sevilla?",
+    answer: "Sí, puedes visitarnos en nuestra tienda en Sevilla. Disponemos de una gran oferta de equipos en exposición para que puedas verlos y probarlos en persona. Nuestro equipo estará encantado de asesorarte para que encuentres el dispositivo Apple que mejor se adapte a ti."
   }
 ];
 
