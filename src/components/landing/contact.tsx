@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const contactInfo = [
   { icon: MapPin, text: "Dirección: C. Tecnología, 5, 41015 Sevilla" },
-  { icon: Mail, text: "Email: hola@macout.es" },
+  { icon: Mail, text: "Email: info@macout.es" },
   { icon: Phone, text: "Teléfono: 603481165" },
 ];
 
@@ -38,7 +38,7 @@ export function Contact() {
           <div className="space-y-6">
             <div className="h-full w-full min-h-[300px] rounded-2xl overflow-hidden shadow-lg">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.829871547464!2d-5.961638684692019!3d37.41662997982601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126903253a805b%3A0xdf745b20f7abd6b6!2sC.%20Tecnolog%C3%ADa%2C%205%2C%2041015%20Sevilla!5e0!3m2!1ses!2ses!4v1678886456789!5m2!1ses!2ses"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.829871547464!2d-5.961638684692019!3d37.41662997982601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126903253a805b%3A0xdf745b20f7abd6b6!2sC.%20Tecnolog%C3%ADa%2C%2C%205%2C%2041015%20Sevilla!5e0!3m2!1ses!2ses!4v1678886456789!5m2!1ses!2ses"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
