@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const WallapopIcon = (props: { className?: string }) => (
   <Image 
-    src="https://freeimage.host/i/KEq55uV" 
+    src="https://iili.io/KEq55uV.png" 
     alt="Wallapop" 
     width={20} 
     height={20} 
