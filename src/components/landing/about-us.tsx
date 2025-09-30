@@ -2,11 +2,11 @@ import Image from "next/image";
 import { AnimatedSection } from "../animated-section";
 
 const images = [
-    { src: "https://iili.io/KnvmVYG.webp", className: "col-span-2 row-span-2" },
-    { src: "https://iili.io/KnvmjTl.webp", className: "" },
-    { src: "https://iili.io/KnvmWvf.webp", className: "" },
-    { src: "https://iili.io/KnvmZ6F.webp", className: "" },
-    { src: "https://iili.io/KnvmM2s.webp", className: "" },
+    { src: "https://iili.io/KM3w5kN.jpg", className: "col-span-2 row-span-2" },
+    { src: "https://iili.io/KM3waIt.jpg", className: "" },
+    { src: "https://iili.io/KM3wchX.jpg", className: "" },
+    { src: "https://iili.io/KM3w1Bs.jpg", className: "" },
+    { src: "https://iili.io/KM3wEEG.jpg", className: "" },
     { src: "https://iili.io/KnvmNQS.webp", className: "col-span-2" },
     { src: "https://iili.io/Knvmgvj.webp", className: "" },
     { src: "https://iili.io/KnvmiZB.webp", className: "" },
