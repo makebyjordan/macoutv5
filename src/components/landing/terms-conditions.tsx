@@ -77,7 +77,7 @@ export function TermsAndConditions() {
 
             <div className="space-y-4">
                 <h2 className="font-bold text-2xl text-foreground">10. POLÍTICA DE COOKIES</h2>
-                <p>Este Sitio Web utiliza cookies. Para más información, consulte nuestra Política de Cookies.</p>
+                <p>Este Sitio Web utiliza cookies. Para más información, consulte nuestra <Link href="/cookies" className="text-primary hover:underline">Política de Cookies</Link>.</p>
             </div>
 
             <div className="space-y-4">
