@@ -1,5 +1,5 @@
 import { MacOutLogo } from "../icons";
-import { Instagram, Facebook } from "lucide-react";
+import { Instagram } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import Image from "next/image";
@@ -21,12 +21,12 @@ const socialLinks = [
 
 const footerLinks = {
   productos: [
-    { href: "#productos", label: "iMac" },
-    { href: "#productos", label: "Macbook Air" },
-    { href: "#productos", label: "Macbook Pro" },
+    { href: "/#productos", label: "iMac" },
+    { href: "/#productos", label: "Macbook Air" },
+    { href: "/#productos", label: "Macbook Pro" },
   ],
   soporte: [
-    { href: "#contacto", label: "Contacto" },
+    { href: "/#contacto", label: "Contacto" },
     { href: "/#faq", label: "Preguntas Frecuentes" },
     { href: "/garantia", label: "Garantía" },
   ],
