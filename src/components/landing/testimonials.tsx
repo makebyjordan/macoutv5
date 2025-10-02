@@ -14,7 +14,7 @@ export function Testimonials() {
   const featuredTestimonials = [...testimonials].reverse().slice(0, 4);
 
   return (
-    <AnimatedSection id="testimonios" className="py-16 sm:py-24">
+    <section id="testimonios" className="py-16 sm:py-24">
        <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="text-sm font-semibold bg-secondary py-1 px-3 rounded-full text-secondary-foreground">Testimonios</span>
@@ -65,6 +65,6 @@ export function Testimonials() {
           </div>
         )}
       </div>
-    </AnimatedSection>
+    </section>
   );
 }

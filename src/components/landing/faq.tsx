@@ -47,7 +47,7 @@ const faqItems = [
 
 export function Faq() {
   return (
-    <AnimatedSection id="faq" className="py-16 sm:py-24 bg-card">
+    <section id="faq" className="py-16 sm:py-24 bg-card">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="text-sm font-semibold bg-secondary py-1 px-3 rounded-full text-secondary-foreground">Resolviendo Dudas</span>
@@ -71,6 +71,6 @@ export function Faq() {
             </Accordion>
         </div>
       </div>
-    </AnimatedSection>
+    </section>
   );
 }

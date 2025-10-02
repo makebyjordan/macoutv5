@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { DashboardProvider } from '@/context/dashboard-provider';
 import './globals.css';
 import { Inter } from 'next/font/google';
+import WhatsAppBubble from '@/components/ui/WhatsAppBubble';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
           {children}
           <Toaster />
         </DashboardProvider>
+        <WhatsAppBubble />
       </body>
     </html>
   );

@@ -26,7 +26,7 @@ export function Contact() {
   };
 
   return (
-    <AnimatedSection id="contacto" className="py-16 sm:py-24">
+    <section id="contacto" className="py-16 sm:py-24">
       <div className="container mx-auto px-4">
         <h2 className="font-headline text-3xl sm:text-4xl font-bold text-center mb-4">
           ¿Hablamos?
@@ -60,6 +60,6 @@ export function Contact() {
           </div>
         </div>
       </div>
-    </AnimatedSection>
+    </section>
   );
 }
