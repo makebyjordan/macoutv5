@@ -15,7 +15,7 @@ export function PrivacyPolicy() {
         <div className="space-y-8 text-muted-foreground">
             <div className="space-y-4">
                 <h2 className="font-bold text-2xl text-foreground">1. INTRODUCCIÓN Y COMPROMISO</h2>
-                <p>Bienvenido a MacOut (en adelante, el "Sitio Web"). En José Manuel Vázquez Arenal (en adelante, "Nosotros" o el "Responsable"), la privacidad de nuestros usuarios y la protección de sus datos personales son una prioridad fundamental.</p>
+                <p>Bienvenido a Macout (en adelante, el "Sitio Web"). En José Manuel Vázquez Arenal (en adelante, "Nosotros" o el "Responsable"), la privacidad de nuestros usuarios y la protección de sus datos personales son una prioridad fundamental.</p>
                 <p>Esta Política de Privacidad tiene como objetivo informarle de manera clara, transparente y detallada sobre cómo recogemos, tratamos, utilizamos, conservamos y protegemos su información personal, en estricto cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos (RGPD), y de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).</p>
                 <p>El acceso y uso de nuestro Sitio Web implica su conocimiento y aceptación de los términos recogidos en esta política.</p>
             </div>

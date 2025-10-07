@@ -29,7 +29,7 @@ const faqItems = [
   },
   {
     question: "¿Qué significa que un equipo es reacondicionado?",
-    answer: "Significa que ha tenido un uso previo, pero no te preocupes. En MacOut, cada equipo pasa por un exhaustivo proceso de revisión y prueba. Nuestros técnicos expertos se aseguran de que cada componente funcione a la perfección, garantizando que recibas un producto 100% funcional y en excelentes condiciones."
+    answer: "Significa que ha tenido un uso previo, pero no te preocupes. En Macout, cada equipo pasa por un exhaustivo proceso de revisión y prueba. Nuestros técnicos expertos se aseguran de que cada componente funcione a la perfección, garantizando que recibas un producto 100% funcional y en excelentes condiciones."
   },
   {
     question: "¿Podéis mejorar el rendimiento de mi equipo Apple?",

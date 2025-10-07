@@ -63,7 +63,7 @@ export function WarrantyInfo() {
             
             <div className="bg-card p-6 rounded-2xl shadow-sm border">
                 <p className="font-semibold text-foreground">
-                    MAC OUT SEVILLA no se responsabiliza de la información personal que contengan la unidad de almacenamiento de los equipos. El cliente se responsabiliza realizando las pertinentes copias de seguridad de los datos previo al proceso de reparación.
+                    Macout no se responsabiliza de la información personal que contengan la unidad de almacenamiento de los equipos. El cliente se responsabiliza realizando las pertinentes copias de seguridad de los datos previo al proceso de reparación.
                 </p>
             </div>
         </div>

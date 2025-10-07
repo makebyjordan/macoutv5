@@ -45,7 +45,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="#inicio" className="flex items-center gap-3 mb-4">
               <MacOutLogo className="h-10 w-10 text-foreground" />
-              <span className="font-headline text-2xl font-bold">MacOut</span>
+              <span className="font-headline text-2xl font-bold">Macout</span>
             </Link>
             <p className="text-muted-foreground max-w-xs mb-6">
               Calidad y sostenibilidad en el corazón de Sevilla. Tu Apple reacondicionado de confianza.
@@ -93,7 +93,7 @@ export function Footer() {
         </div>
         <div className="border-t pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm mb-4 sm:mb-0">
-            © {new Date().getFullYear()} MacOut. Todos los derechos reservados.
+            © {new Date().getFullYear()} Macout. Todos los derechos reservados.
           </p>
           <div className="flex gap-2">
             {socialLinks.map((link) => (

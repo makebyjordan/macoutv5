@@ -41,7 +41,7 @@ export function Navbar() {
           <div className="flex h-20 items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <MacOutLogo className="h-8 w-8 text-foreground" />
-              <span className="font-headline text-xl font-bold">MacOut</span>
+              <span className="font-headline text-xl font-bold">Macout</span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-6">
@@ -70,7 +70,7 @@ export function Navbar() {
                         <div className="flex items-center justify-between border-b pb-4">
                              <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
                                 <MacOutLogo className="h-8 w-8 text-foreground" />
-                                <span className="font-headline text-xl font-bold">MacOut</span>
+                                <span className="font-headline text-xl font-bold">Macout</span>
                             </Link>
                         </div>
                         <nav className="flex flex-col gap-6 mt-8">

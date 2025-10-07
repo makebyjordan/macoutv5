@@ -8,8 +8,8 @@ import WhatsAppBubble from '@/components/ui/WhatsAppBubble';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'MacOut Recommerce',
-  description: 'Dale una segunda vida a la tecnología. Descubre tu Apple reacondicionado en MacOut.',
+  title: 'Macout Recommerce',
+  description: 'Dale una segunda vida a la tecnología. Descubre tu Apple reacondicionado en Macout.',
 };
 
 export default function RootLayout({

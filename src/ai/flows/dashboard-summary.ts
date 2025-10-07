@@ -1,6 +1,6 @@
 'use server';
 /**
- * @fileOverview Summarizes dashboard information for MacOut employees.
+ * @fileOverview Summarizes dashboard information for Macout employees.
  *
  * - getDashboardSummary - A function that generates a summary of key dashboard metrics.
  * - DashboardSummaryInput - The input type for the getDashboardSummary function.
@@ -88,7 +88,7 @@ const prompt = ai.definePrompt({
   input: {schema: DashboardSummaryInputSchema},
   output: {schema: DashboardSummaryOutputSchema},
   tools: [getTotalRevenue, getTotalExpenses, getTotalInventory, getNetBalance],
-  prompt: `You are an AI assistant summarizing key business metrics for a MacOut employee.
+  prompt: `You are an AI assistant summarizing key business metrics for a Macout employee.
 
   Generate a concise summary (20-30 words) of the current business state, using the available tools to fetch the latest data.
   Include the total revenue, total expenses, number of items in inventory, and net balance in the summary.
