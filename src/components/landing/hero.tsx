@@ -6,14 +6,14 @@ export function Hero() {
     <AnimatedSection id="inicio" className="relative h-[80vh] md:h-screen min-h-[500px] w-full text-white">
       <Image
         src="https://iili.io/KlQyBmG.jpg" 
-        alt="Logo de MacOut sobre un fondo de cubos azules y negros"
+        alt="Logo de Macout sobre un fondo de cubos azules y negros"
         fill
         priority
-        className="object-cover"
+        className="object-cover md:object-center"
         data-ai-hint="logo company background"
       />
       <div className="absolute inset-0 bg-black/50" />
-      <div className="relative z-10 container mx-auto px-4 flex flex-col justify-center md:justify-end h-full pt-20 md:pt-0 md:pb-24">
+      <div className="relative z-10 container mx-auto px-4 flex flex-col justify-center h-full pt-20 md:pt-0 md:pb-24">
         <div className="max-w-3xl text-center mx-auto">
           <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
               Tu Apple reacondicionado.
