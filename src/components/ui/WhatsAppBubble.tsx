@@ -5,7 +5,7 @@ import React from 'react';
 import { IoLogoWhatsapp } from 'react-icons/io5';
 
 const WhatsAppBubble = () => {
-  const phoneNumber = '34604979962';
+  const phoneNumber = '34603481165';
   const message = 'Hola, estoy interesado en tus servicios.';
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
