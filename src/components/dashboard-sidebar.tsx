@@ -37,9 +37,9 @@ export function DashboardSidebar() {
         <Link href="/dashboard" className="flex items-center gap-2">
           <MacOutLogo className="h-8 w-8 text-foreground" />
           <div className="font-headline text-xl font-bold">
-            <div>MAC</div>
+            <div className="">MAC</div>
             <div className="h-0.5 bg-foreground w-full"></div>
-            <div className="-mt-1.5">OUT</div>
+            <div className="">OUT</div>
           </div>
         </Link>
       </SidebarHeader>
