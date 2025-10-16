@@ -20,16 +20,13 @@ export function Hero() {
            <Link href="/" className="flex items-center justify-center gap-4 mb-8">
               <MacOutLogo className="h-24 w-24 text-white" />
               <div className="font-headline text-5xl font-bold">
-                <div className="-mb-2">MAC</div>
+                <div className="">MAC</div>
                 <div className="h-1 bg-white w-full"></div>
                 <div className="-mt-2">OUT</div>
               </div>
             </Link>
           <h1 className="font-headline text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
               Tu Apple reacondicionado.
-              <span className="block text-primary mt-1 md:mt-2">
-                 Calidad y ahorro.
-              </span>
           </h1>
           <p className="mt-4 md:mt-6 text-sm md:text-base text-gray-200">
               Equipos 100% verificados, con garantía y al mejor precio. Directamente desde el corazón de Sevilla.
