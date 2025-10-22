@@ -14,7 +14,7 @@ export function Hero() {
         className="object-cover object-center"
         data-ai-hint="logo company background"
       />
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/60" />
       <div className="relative z-10 container mx-auto px-4 flex flex-col items-center justify-center h-full">
         <div className="max-w-3xl text-center">
            <Link href="/" className="flex items-center justify-center gap-4 mb-8">
@@ -28,8 +28,11 @@ export function Hero() {
           <h1 className="font-headline text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
               Tu Apple reacondicionado.
           </h1>
-          <p className="mt-4 md:mt-6 text-sm md:text-base text-gray-200">
-              Equipos 100% verificados, con garantía y al mejor precio. Directamente desde el corazón de Sevilla.
+          <p className="font-bold text-lg md:text-xl text-primary mt-2">Calidad y Ahorro</p>
+          <p className="mt-4 text-sm md:text-base text-gray-200">
+              Equipos 100% verificados, con garantía y al mejor precio.
+              <br />
+              Directamente desde el corazón de Sevilla.
           </p>
         </div>
       </div>
