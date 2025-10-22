@@ -45,10 +45,13 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="#inicio" className="flex items-center gap-3 mb-4">
               <MacOutLogo className="h-10 w-10 text-foreground" />
-              <div className="font-headline text-2xl font-bold">
-                <div className="">MAC</div>
-                <div className="h-0.5 bg-foreground w-full"></div>
-                <div className="">OUT</div>
+              <div className="relative h-8 w-28">
+                 <Image
+                    src="https://iili.io/KUkwLEG.png"
+                    alt="Macout Logotipo"
+                    fill
+                    className="object-contain"
+                />
               </div>
             </Link>
             <p className="text-muted-foreground max-w-xs mb-6">

@@ -14,6 +14,7 @@ import {
 import { MacOutLogo } from "./icons";
 import { LayoutDashboard, Package, Wallet, LogOut, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const navItems = [
   { href: "/dashboard", icon: LayoutDashboard, label: "Resumen" },
@@ -36,10 +37,14 @@ export function DashboardSidebar() {
       <SidebarHeader>
         <Link href="/dashboard" className="flex items-center gap-2">
           <MacOutLogo className="h-8 w-8 text-foreground" />
-          <div className="font-headline text-xl font-bold">
-            <div className="">MAC</div>
-            <div className="h-0.5 bg-foreground w-full"></div>
-            <div className="">OUT</div>
+          <div className="relative h-8 w-28">
+            <Image
+                src="https://iili.io/KUkwLEG.png"
+                alt="Macout Logotipo"
+                fill
+                className="object-contain"
+                priority
+            />
           </div>
         </Link>
       </SidebarHeader>

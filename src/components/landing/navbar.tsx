@@ -8,6 +8,7 @@ import { AuthModal } from "../auth-modal";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/#inicio", label: "Inicio" },
@@ -41,10 +42,14 @@ export function Navbar() {
           <div className="flex h-20 items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <MacOutLogo className="h-8 w-8 text-foreground" />
-              <div className="font-headline text-xl font-bold">
-                <div className="">MAC</div>
-                <div className="h-0.5 bg-foreground w-full"></div>
-                <div className="">OUT</div>
+              <div className="relative h-6 w-24">
+                <Image
+                    src="https://iili.io/KUkwLEG.png"
+                    alt="Macout Logotipo"
+                    fill
+                    className="object-contain"
+                    priority
+                />
               </div>
             </Link>
 
@@ -74,10 +79,13 @@ export function Navbar() {
                         <div className="flex items-center justify-between border-b pb-4">
                              <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
                                 <MacOutLogo className="h-8 w-8 text-foreground" />
-                                <div className="font-headline text-xl font-bold">
-                                  <div className="">MAC</div>
-                                  <div className="h-0.5 bg-foreground w-full"></div>
-                                  <div className="">OUT</div>
+                                <div className="relative h-6 w-24">
+                                  <Image
+                                      src="https://iili.io/KUkwLEG.png"
+                                      alt="Macout Logotipo"
+                                      fill
+                                      className="object-contain"
+                                  />
                                 </div>
                             </Link>
                         </div>
