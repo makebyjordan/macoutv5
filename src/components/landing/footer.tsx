@@ -45,7 +45,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="#inicio" className="flex items-center mb-4">
               <MacOutLogo className="h-10 w-10 text-foreground" />
-              <div className="relative h-10 w-[158px]">
+              <div className="relative h-10 w-[128px] -ml-2">
                  <Image
                     src="https://iili.io/KUkwLEG.png"
                     alt="Macout Logotipo"

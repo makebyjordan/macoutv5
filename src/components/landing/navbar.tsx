@@ -42,7 +42,7 @@ export function Navbar() {
           <div className="flex h-20 items-center justify-between">
             <Link href="/" className="flex items-center">
               <MacOutLogo className="h-8 w-8 text-foreground" />
-              <div className="relative h-10 w-[158px]">
+              <div className="relative h-10 w-[128px] -ml-2">
                 <Image
                     src="https://iili.io/KUkwLEG.png"
                     alt="Macout Logotipo"
@@ -79,7 +79,7 @@ export function Navbar() {
                         <div className="flex items-center justify-between border-b pb-4">
                              <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
                                 <MacOutLogo className="h-8 w-8 text-foreground" />
-                                <div className="relative h-10 w-[158px]">
+                                <div className="relative h-10 w-[128px] -ml-2">
                                   <Image
                                       src="https://iili.io/KUkwLEG.png"
                                       alt="Macout Logotipo"
