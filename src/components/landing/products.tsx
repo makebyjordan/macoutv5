@@ -34,7 +34,7 @@ export function Products() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {[...products]
               .reverse()
-              .slice(0, 8)
+              .slice(0, 12)
               .map((product, index) => (
                 // La animación en cascada de las tarjetas se mantiene. ¡Perfecto!
                 <AnimatedSection key={product.id} delay={index * 100}>
