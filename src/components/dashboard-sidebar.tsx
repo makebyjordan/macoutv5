@@ -37,7 +37,7 @@ export function DashboardSidebar() {
       <SidebarHeader>
         <Link href="/dashboard" className="flex items-center">
           <MacOutLogo className="h-8 w-8 text-foreground" />
-          <div className="relative h-10 w-[128px] -ml-2">
+          <div className="relative h-10 w-[128px] -ml-4">
             <Image
                 src="https://iili.io/KUkwLEG.png"
                 alt="Macout Logotipo"
