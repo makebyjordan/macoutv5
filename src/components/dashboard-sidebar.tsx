@@ -35,7 +35,7 @@ export function DashboardSidebar() {
   return (
     <Sidebar>
       <SidebarHeader>
-        <Link href="/dashboard" className="flex items-center gap-2">
+        <Link href="/dashboard" className="flex items-center">
           <MacOutLogo className="h-8 w-8 text-foreground" />
           <div className="relative h-10 w-[158px]">
             <Image
