@@ -18,10 +18,17 @@ export function Hero() {
       <div className="relative z-10 container mx-auto px-4 flex flex-col items-center justify-center h-full">
         <div className="max-w-3xl text-center">
            <Link href="/" className="flex items-center justify-center">
-              <MacOutLogo className="h-24 w-24 text-white" />
-              <div className="relative h-[138.24px] w-[552.96px] ml-[-30px]">
+                <div className="relative h-24 w-24">
+                    <Image
+                        src="https://iili.io/KQ5UldN.png"
+                        alt="Macout Logo Manzana"
+                        fill
+                        className="object-contain"
+                    />
+                </div>
+              <div className="relative h-[138.24px] w-[552.96px]">
                 <Image
-                    src="https://iili.io/KQ5Y5vt.png"
+                    src="https://iili.io/KQRAU9s.png"
                     alt="Macout Logotipo"
                     fill
                     className="object-contain"
