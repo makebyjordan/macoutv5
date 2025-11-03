@@ -81,7 +81,7 @@ export function Navbar() {
                                 <MacOutLogo className="h-8 w-8 text-foreground" />
                                 <div className="relative h-10 w-[128px]">
                                   <Image
-                                      src="https://iili.io/KQRAU9s.png"
+                                      src="https://iili.io/KQ5Y5vt.png"
                                       alt="Macout Logotipo"
                                       fill
                                       className="object-contain"
