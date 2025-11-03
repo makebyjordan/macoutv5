@@ -15,7 +15,7 @@ export function Hero() {
         data-ai-hint="logo company background"
       />
       <div className="absolute inset-0 bg-black/60" />
-      <div className="relative z-10 container mx-auto px-4 flex flex-col items-center justify-center h-full">
+      <div className="relative z-10 container mx-auto flex flex-col items-center justify-center h-full">
         <div className="max-w-3xl text-center">
            <Link href="/" className="flex items-center justify-center">
                 <div className="relative h-24 w-24">
