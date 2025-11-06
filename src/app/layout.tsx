@@ -14,7 +14,7 @@ const poppins = Poppins({
 
 
 export const metadata: Metadata = {
-  title: 'Macout Recommerce',
+  title: 'MacOut',
   description: 'Dale una segunda vida a la tecnología. Descubre tu Apple reacondicionado en Macout.',
 };
 

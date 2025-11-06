@@ -15,31 +15,31 @@ export function Hero() {
         data-ai-hint="logo company background"
       />
       <div className="absolute inset-0 bg-black/60" />
-      <div className="relative container mx-auto flex flex-col items-center justify-center h-full">
+      <div className="relative container mx-auto flex flex-col items-center justify-center h-full px-4">
         <div className="max-w-4xl mx-auto mb-8 text-center">
-           <Link href="/" className="flex items-center justify-center">
-              <div className="relative h-40 w-40 -mr-16">
+           <Link href="/" className="flex flex-col sm:flex-row items-center justify-center">
+              <div className="relative h-24 w-24 sm:h-40 sm:w-40">
                   <Image
                       src="https://iili.io/KQ5UldN.png"
                       alt="Macout Logo Manzana"
                       fill
-                      className="object-contain ml-12"
+                      className="object-contain"
                   />
               </div>
-              <div className="relative h-[250px] w-[650px] -ml-16">
+              <div className="relative h-[100px] w-[260px] sm:h-[250px] sm:w-[650px] sm:-ml-16">
                 <Image
                     src="https://iili.io/KQ5Y5vt.png"
                     alt="Macout Logotipo"
                     fill
-                    className="object-contain ml-12"
+                    className="object-contain"
                 />
               </div>
             </Link>
-          <h1 className="font-headline pt-8 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+          <h1 className="font-headline pt-4 sm:pt-8 text-3xl sm:text-5xl font-bold tracking-tight">
               Tu Apple reacondicionado.
           </h1>
-          <p className="font-bold text-3xl md:text-5xl text-primary mt-6">Calidad y Ahorro</p>
-          <p className="mt-4 text-lg md:text-xl text-gray-200">
+          <p className="font-bold text-2xl md:text-5xl text-primary mt-4">Calidad y Ahorro</p>
+          <p className="mt-4 text-base md:text-xl text-gray-200">
               Equipos 100% verificados,
               <br />
               con garantía y al mejor precio.
