@@ -15,8 +15,8 @@ const WallapopIcon = (props: { className?: string }) => (
 );
 
 const socialLinks = [
-  { icon: WallapopIcon, href: "#", name: "Wallapop" },
-  { icon: Instagram, href: "#", name: "Instagram" },
+  { icon: WallapopIcon, href: "https://es.wallapop.com/user/josev-9829447", name: "Wallapop" },
+  { icon: Instagram, href: "https://www.instagram.com/mac_out_sevilla/?hl=es", name: "Instagram" },
 ];
 
 const footerLinks = {
@@ -57,8 +57,10 @@ export function Footer() {
             <p className="text-muted-foreground max-w-xs mb-6">
               Calidad y sostenibilidad en el corazón de Sevilla. Tu Apple reacondicionado de confianza.
             </p>
-             <Button className="bg-primary text-primary-foreground rounded-full hover:bg-primary/90">
-                Contactar &#8594;
+             <Button asChild className="bg-primary text-primary-foreground rounded-full hover:bg-primary/90">
+                <Link href="#contacto">
+                    Contactar &#8594;
+                </Link>
               </Button>
           </div>
           <div>
@@ -107,6 +109,8 @@ export function Footer() {
               <Link
                 href={link.href}
                 key={link.name}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={link.name}
                 className="text-muted-foreground hover:bg-secondary p-2 rounded-full transition-colors"
               >
