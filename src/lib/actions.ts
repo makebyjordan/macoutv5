@@ -1,65 +1,114 @@
 'use server';
 
-import { 
-  getLocalProducts, 
-  addLocalProduct, 
-  updateLocalProduct, 
-  deleteLocalProduct, 
-  getLocalTransactions, 
-  addLocalTransaction, 
-  updateLocalTransaction, 
-  deleteLocalTransaction, 
-  getLocalTestimonials, 
-  addLocalTestimonial, 
-  deleteLocalTestimonial 
-} from './data-service';
+import { supabase } from './supabase';
 
+// --- PRODUCTS ---
 export async function fetchProducts() {
-  return getLocalProducts();
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .order('name');
+  
+  if (error) throw error;
+  return data;
 }
 
 export async function createProduct(product: any) {
-  return addLocalProduct(product);
+  const { data, error } = await supabase
+    .from('products')
+    .insert([product])
+    .select()
+    .single();
+  
+  if (error) throw error;
+  return data;
 }
 
 export async function updateProduct(id: string, product: any) {
-  return updateLocalProduct(id, product);
+  const { error } = await supabase
+    .from('products')
+    .update(product)
+    .eq('id', id);
+  
+  if (error) throw error;
 }
 
 export async function removeProduct(id: string) {
-  return deleteLocalProduct(id);
+  const { error } = await supabase
+    .from('products')
+    .delete()
+    .eq('id', id);
+  
+  if (error) throw error;
 }
 
+// --- TRANSACTIONS ---
 export async function fetchTransactions() {
-  const transactions = await getLocalTransactions();
-  // Ensure we return simple objects (no Date objects as results can be passed to client components)
-  return transactions.map((t: any) => ({
-    ...t,
-    date: t.date.toISOString()
-  }));
+  const { data, error } = await supabase
+    .from('transactions')
+    .select('*')
+    .order('date', { ascending: false });
+  
+  if (error) throw error;
+  return data;
 }
 
 export async function createTransaction(transaction: any) {
-  const res = await addLocalTransaction(transaction);
-  return { ...res, date: res.date.toISOString() };
+  const { data, error } = await supabase
+    .from('transactions')
+    .insert([{ ...transaction, date: transaction.date || new Date().toISOString() }])
+    .select()
+    .single();
+  
+  if (error) throw error;
+  return data;
 }
 
 export async function updateTransaction(id: string, transaction: any) {
-  return updateLocalTransaction(id, transaction);
+  const { error } = await supabase
+    .from('transactions')
+    .update(transaction)
+    .eq('id', id);
+  
+  if (error) throw error;
 }
 
 export async function removeTransaction(id: string) {
-  return deleteLocalTransaction(id);
+  const { error } = await supabase
+    .from('transactions')
+    .delete()
+    .eq('id', id);
+  
+  if (error) throw error;
 }
 
+// --- TESTIMONIALS ---
 export async function fetchTestimonials() {
-  return getLocalTestimonials();
+  const { data, error } = await supabase
+    .from('testimonials')
+    .select('*')
+    .order('name');
+  
+  if (error) throw error;
+  return data;
 }
 
 export async function createTestimonial(testimonial: any) {
-  return addLocalTestimonial(testimonial);
+  const { data, error } = await supabase
+    .from('testimonials')
+    .insert([testimonial])
+    .select()
+    .single();
+  
+  if (error) throw error;
+  return data;
 }
 
 export async function removeTestimonial(id: string) {
-  return deleteLocalTestimonial(id);
+  const { error } = await supabase
+    .from('testimonials')
+    .delete()
+    .eq('id', id);
+  
+  if (error) throw error;
 }
