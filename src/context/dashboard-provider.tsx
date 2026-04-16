@@ -2,17 +2,18 @@
 
 import { createContext, useState, useMemo, useCallback, useEffect } from "react";
 import { 
-  collection, 
-  getDocs, 
-  addDoc, 
-  updateDoc, 
-  deleteDoc, 
-  doc,
-  Timestamp,
-  query,
-  orderBy
-} from "firebase/firestore";
-import { db } from "@/lib/firebase";
+  fetchProducts, 
+  createProduct, 
+  updateProduct as updateProductAction, 
+  removeProduct, 
+  fetchTransactions, 
+  createTransaction, 
+  updateTransaction as updateTransactionAction, 
+  removeTransaction, 
+  fetchTestimonials, 
+  createTestimonial, 
+  removeTestimonial 
+} from "@/lib/actions";
 import type { Product, ProductData, Transaction, TransactionData, Testimonial, TestimonialData } from "@/types";
 import { useToast } from "@/hooks/use-toast";
 
@@ -43,39 +44,23 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const { toast } = useToast();
 
-  const productsCollection = collection(db, "products");
-  const transactionsCollection = collection(db, "transactions");
-  const testimonialsCollection = collection(db, "testimonials");
-
   const fetchAllData = useCallback(async () => {
     setLoading(true);
     try {
       // Fetch products
-      const productsSnapshot = await getDocs(query(collection(db, "products"), orderBy("name")));
-      const productsList = productsSnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      })) as Product[];
+      const productsList = await fetchProducts();
       setProducts(productsList);
 
       // Fetch transactions
-      const transactionsSnapshot = await getDocs(query(collection(db, "transactions"), orderBy("date", "desc")));
-      const transactionsList = transactionsSnapshot.docs.map(doc => {
-        const data = doc.data();
-        return {
-          id: doc.id,
-          ...data,
-          date: (data.date as Timestamp).toDate(),
-        }
-      }) as Transaction[];
-      setTransactions(transactionsList);
+      const transactionsList = await fetchTransactions();
+      const formattedTransactions = transactionsList.map((t: any) => ({
+        ...t,
+        date: new Date(t.date)
+      }));
+      setTransactions(formattedTransactions);
 
       // Fetch testimonials
-      const testimonialsSnapshot = await getDocs(query(collection(db, "testimonials"), orderBy("name")));
-      const testimonialsList = testimonialsSnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      })) as Testimonial[];
+      const testimonialsList = await fetchTestimonials();
       setTestimonials(testimonialsList);
 
     } catch (error) {
@@ -83,67 +68,55 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
       toast({
         variant: "destructive",
         title: "Error de Carga",
-        description: "No se pudieron cargar los datos desde el backend.",
+        description: "No se pudieron cargar los datos locales.",
       });
     } finally {
       setLoading(false);
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [toast]);
 
   useEffect(() => {
     fetchAllData();
   }, [fetchAllData]);
   
   const addProduct = async (productData: ProductData) => {
-    const docRef = await addDoc(productsCollection, productData);
-    setProducts(prev => [...prev, { id: docRef.id, ...productData }].sort((a, b) => a.name.localeCompare(b.name)));
+    const newProduct = await createProduct(productData);
+    setProducts(prev => [...prev, newProduct].sort((a, b) => a.name.localeCompare(b.name)));
   };
 
   const updateProduct = async (id: string, updatedProductData: ProductData) => {
-    const productDoc = doc(db, "products", id);
-    await updateDoc(productDoc, updatedProductData);
-    setProducts(prev => prev.map(p => p.id === id ? { id, ...updatedProductData } : p).sort((a, b) => a.name.localeCompare(b.name)));
+    await updateProductAction(id, updatedProductData);
+    setProducts(prev => prev.map(p => p.id === id ? { ...updatedProductData, id } : p).sort((a, b) => a.name.localeCompare(b.name)));
   };
   
   const deleteProduct = async (id: string) => {
-    const productDoc = doc(db, "products", id);
-    await deleteDoc(productDoc);
+    await removeProduct(id);
     setProducts(prev => prev.filter(p => p.id !== id));
   };
   
   const addTransaction = async (transactionData: TransactionData) => {
-    const dataWithDate = {
-      ...transactionData,
-      date: new Date()
-    };
-    const docRef = await addDoc(transactionsCollection, dataWithDate);
-    setTransactions(prev => [...prev, { ...dataWithDate, id: docRef.id }].sort((a, b) => b.date.getTime() - a.date.getTime()));
+    const newTx = await createTransaction(transactionData);
+    const formattedTx = { ...newTx, date: new Date(newTx.date) };
+    setTransactions(prev => [...prev, formattedTx].sort((a, b) => b.date.getTime() - a.date.getTime()));
   };
   
   const updateTransaction = async (id: string, updatedTransactionData: TransactionData) => {
-    const transactionDoc = doc(db, "transactions", id);
-    // Keep original date on update
-    const originalTx = transactions.find(t => t.id === id);
-    if (!originalTx) return;
-
-    const dataToUpdate = { ...updatedTransactionData, date: originalTx.date };
-    await updateDoc(transactionDoc, dataToUpdate as any);
-    setTransactions(prev => prev.map(t => t.id === id ? { ...originalTx, ...updatedTransactionData, id } : t).sort((a, b) => b.date.getTime() - a.date.getTime()));
+    await updateTransactionAction(id, updatedTransactionData);
+    setTransactions(prev => prev.map(t => t.id === id ? { ...t, ...updatedTransactionData } : t).sort((a, b) => b.date.getTime() - a.date.getTime()));
   };
 
   const deleteTransaction = async (id: string) => {
-    const transactionDoc = doc(db, "transactions", id);
-    await deleteDoc(transactionDoc);
+    await removeTransaction(id);
     setTransactions(prev => prev.filter(t => t.id !== id));
   };
 
   const addTestimonial = async (testimonialData: TestimonialData) => {
-    const docRef = await addDoc(testimonialsCollection, testimonialData);
-    setTestimonials(prev => [...prev, {id: docRef.id, ...testimonialData}].sort((a,b) => a.name.localeCompare(b.name)));
+    const newTestimonial = await createTestimonial(testimonialData);
+    setTestimonials(prev => [...prev, newTestimonial].sort((a,b) => a.name.localeCompare(b.name)));
   };
 
   const deleteTestimonial = async (id: string) => {
-    await deleteDoc(doc(db, "testimonials", id));
+    await removeTestimonial(id);
     setTestimonials(prev => prev.filter(t => t.id !== id));
   };
 
