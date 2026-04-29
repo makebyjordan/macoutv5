@@ -26,8 +26,8 @@ export type Transaction = TransactionData & {
 
 export type TestimonialData = {
   name: string;
-  review: string;
-  stars: number;
+  content: string;
+  role: string;
   avatar: string;
 };
 

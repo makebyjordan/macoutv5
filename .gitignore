@@ -49,5 +49,8 @@ Thumbs.db
 .directory
 
 # Vercel / Firebase
-.vercel
-.firebase/
+/.vercel
+/.firebase/
+
+# Scratch
+/scratch/

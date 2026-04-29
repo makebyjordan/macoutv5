@@ -17,8 +17,8 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const testimonialSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres."),
-  review: z.string().min(10, "El comentario debe tener al menos 10 caracteres."),
-  stars: z.number().min(1).max(5),
+  content: z.string().min(10, "El comentario debe tener al menos 10 caracteres."),
+  role: z.string().min(2, "El rol debe tener al menos 2 caracteres."),
 });
 
 type TestimonialFormValues = z.infer<typeof testimonialSchema>;
@@ -31,8 +31,8 @@ export default function TestimoniosPage() {
     resolver: zodResolver(testimonialSchema),
     defaultValues: {
       name: "",
-      review: "",
-      stars: 5,
+      content: "",
+      role: "Cliente Satisfecho",
     },
   });
 
@@ -82,7 +82,7 @@ export default function TestimoniosPage() {
               />
               <FormField
                 control={form.control}
-                name="review"
+                name="content"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Comentario</FormLabel>
@@ -95,28 +95,15 @@ export default function TestimoniosPage() {
               />
               <FormField
                 control={form.control}
-                name="stars"
+                name="role"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Valoración</FormLabel>
+                    <FormLabel>Rol / Título</FormLabel>
                     <FormControl>
-                        <div className="flex items-center gap-4">
-                            <Slider
-                                defaultValue={[field.value]}
-                                min={1}
-                                max={5}
-                                step={1}
-                                onValueChange={(value) => field.onChange(value[0])}
-                                className="w-64"
-                            />
-                            <div className="flex text-yellow-400">
-                                {[...Array(field.value)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
-                                {[...Array(5 - field.value)].map((_, i) => <Star key={i} className="h-5 w-5" />)}
-                            </div>
-                        </div>
+                      <Input placeholder="Ej. Cliente Satisfecho" {...field} />
                     </FormControl>
                     <FormDescription>
-                      Mueve el deslizador para seleccionar de 1 a 5 estrellas.
+                      Etiqueta que aparecerá bajo el nombre (ej. Cliente, Especialista, etc.)
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -153,13 +140,16 @@ export default function TestimoniosPage() {
                              <Avatar className="h-10 w-10">
                                <AvatarFallback className="bg-primary text-primary-foreground font-bold">{testimonial.avatar}</AvatarFallback>
                              </Avatar>
-                             <span className="font-medium">{testimonial.name}</span>
+                             <div className="flex flex-col">
+                               <span className="font-medium">{testimonial.name}</span>
+                               <span className="text-xs text-muted-foreground">{testimonial.role}</span>
+                             </div>
                            </div>
                         </TableCell>
-                        <TableCell className="max-w-md"><p className="line-clamp-2">{testimonial.review}</p></TableCell>
+                        <TableCell className="max-w-md"><p className="line-clamp-2">{testimonial.content}</p></TableCell>
                         <TableCell>
                             <div className="flex text-yellow-400">
-                                {[...Array(testimonial.stars)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
+                                {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
                             </div>
                         </TableCell>
                         <TableCell>
